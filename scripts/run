@@ -1,0 +1,13 @@
+#!/bin/bash
+
+set -o errexit
+set -o nounset
+set -o pipefail
+
+SOURCE_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+ROOT_DIR="$SOURCE_DIR/.."
+
+UPDATE_XML=$(cat ~/.jenkins/hudson.model.UpdateCenter.xml)
+echo $UPDATE_XML | sed "s@https://updates@http://updates@g" > ~/.jenkins/hudson.model.UpdateCenter.xml
+
+java -jar $ROOT_DIR/lib/jenkins.war --httpPort=8080
