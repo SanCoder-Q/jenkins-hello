@@ -1,0 +1,8 @@
+#+STARTUP: indent
+#+STARTUP: showall
+#+PROPERTY: header-args :results silent
+
+#+TITLE: Jenkins-Hello
+#+author: Jianming Qu
+
+A repo to let me learn and setup jenkins.
