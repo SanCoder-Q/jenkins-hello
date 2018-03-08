@@ -6,8 +6,15 @@ set -o pipefail
 
 SOURCE_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 ROOT_DIR="$SOURCE_DIR/.."
+WAR_PATH="$ROOT_DIR/lib/jenkins.war"
+
+if [ ! -e "$WAR_PATH" ]; then
+    echo "Downloading jenkins ..."
+    curl -L "http://mirrors.jenkins.io/war-stable/latest/jenkins.war" --create-dirs -o "$WAR_PATH"
+fi
 
 UPDATE_XML=$(cat ~/.jenkins/hudson.model.UpdateCenter.xml)
 echo $UPDATE_XML | sed "s@https://updates@http://updates@g" > ~/.jenkins/hudson.model.UpdateCenter.xml
 
-java -jar $ROOT_DIR/lib/jenkins.war --httpPort=8080
+echo "Starting jenkins on 8080 ..."
+java -jar "$WAR_PATH" --httpPort=8080
