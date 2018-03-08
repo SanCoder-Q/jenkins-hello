@@ -1,0 +1,4 @@
+[submodule "jenkins-test-repo"]
+	path = jenkins-test-repo
+	url = git@github.com:SanCoder-Q/jenkins-test-repo.git
+	branch = master
